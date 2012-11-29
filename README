@@ -4,7 +4,8 @@ run other programs.
 Whenever a file is to be executed, the library checks for an environment
 variable named
   TANDYALF<path>
-where <path> is the fully-qualified path to an executable; if it exists, the
+where <path> is the fully-qualified path to an executable, with slashes and
+dots changed to underscores, and plusses to 'x's; if it exists, the
 program named by that variable (by fully-qualified path) is executed
 instead. For example,
 
