@@ -46,7 +46,6 @@ windmc
 windres
 EOF`
 do
-    echo "$TC$comp"
     tccomp=`which "$TC$comp"`
     test "x$tccomp" = "x" && continue
     comp=`echo "$comp" | sed 's/\+/x/g;s/\./_/g'`
