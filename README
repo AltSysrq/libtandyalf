@@ -1,0 +1,25 @@
+libtandyalf is a simple LD_PRELOAD library which rewrites calls to execve() to
+run other programs.
+
+Whenever a file is to be executed, the library checks for an environment
+variable named
+  TANDYALF<path>
+where <path> is the fully-qualified path to an executable; if it exists, the
+program named by that variable (by fully-qualified path) is executed
+instead. For example,
+
+$ LD_PRELOAD=/usr/local/lib/libtandyalf.so TANDYALF_bin_rm=/bin/echo sh
+$ rm -rf /
+-rf /
+$
+
+The intended use of this library is to deal with build systems such as Boost's
+bjam, which ONLY uses the system builds:
+  export TANDYALF_usr_bin_gcc=$(which i686-w64-mingw32-gcc)
+  export TANDYALF_usr_bin_g++=$(which i686-w64-mingw32-g++)
+  export TANDYALF_usr_bin_ld=$(which i686-w64-mingw32-ld)
+  export TANDYALF_usr_bin_ar=$(which i686-w64-mingw32-ar)
+  export TANDYALF_usr_bin_ranlib=$(which i686-w64-mingw32-ranlib)
+  LD_PRELOAD=/usr/local/lib/libtandyalf.so bjam
+
+There could be other uses as well.
