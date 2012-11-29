@@ -22,4 +22,7 @@ bjam, which ONLY uses the system builds:
   export TANDYALF_usr_bin_ranlib=$(which i686-w64-mingw32-ranlib)
   LD_PRELOAD=/usr/local/lib/libtandyalf.so bjam
 
+The tandyalf_toolchain script will do this for you:
+  tandyalf_toolchain i686-w64-mingw32- bjam
+
 There could be other uses as well.
