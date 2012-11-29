@@ -55,8 +55,10 @@ static void remap_command(const char** path) {
   strncat(envname, *path, BUFFER_SIZE - sizeof(prefix));
   /* Change slashes to underscores */
   for (i = 0; i < BUFFER_SIZE && envname[i]; ++i)
-    if (envname[i] == '/')
+    if (envname[i] == '/' || envname[i] == '.')
       envname[i] = '_';
+    else if (envname[i] == '+')
+      envname[i] = 'x';
 
   /* See if there is a replacement */
   replacement = getenv(envname);
